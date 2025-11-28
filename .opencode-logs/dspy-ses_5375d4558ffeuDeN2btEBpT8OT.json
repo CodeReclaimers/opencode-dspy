@@ -1,0 +1,123 @@
+{
+  "session": "ses_5375d4558ffeuDeN2btEBpT8OT",
+  "generated": "2025-11-28T04:05:07.781Z",
+  "totalExamples": 1,
+  "outcome": {
+    "success": true,
+    "taskCompleted": true,
+    "metrics": {
+      "lspErrorsCleared": false,
+      "filesModified": 1,
+      "timeToCompletion": 8.591,
+      "toolCallCount": 1,
+      "tokenCost": {
+        "input": 10,
+        "output": 152,
+        "cache": {
+          "read": 22675,
+          "write": 547
+        }
+      },
+      "cacheHitRate": 0.9995591800749394
+    },
+    "evaluation": {
+      "correctness": 1,
+      "efficiency": 1,
+      "minimalEdits": 1
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "task": "Please add the line \"Yet another test\" to @test.txt",
+        "context": {
+          "workingDirectory": "/home/alan/opencode-dspy",
+          "relevantFiles": [
+            "session-logger-v1.ts",
+            ".opencode/plugin/session-logger.ts",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/example.d.ts",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/index.js",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/tool.js",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/shell.js",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/example.js",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/shell.d.ts",
+            ".opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts",
+            ".opencode/node_modules/zod/index.js",
+            ".opencode/node_modules/zod/index.d.ts",
+            ".opencode/node_modules/zod/mini/index.js",
+            ".opencode/node_modules/zod/mini/index.d.ts",
+            ".opencode/node_modules/zod/v4/index.js",
+            ".opencode/node_modules/zod/v4/index.d.ts",
+            ".opencode/node_modules/@opencode-ai/sdk/dist/index.js",
+            ".opencode/node_modules/@opencode-ai/sdk/dist/client.d.ts",
+            ".opencode/node_modules/@opencode-ai/sdk/dist/client.js",
+            ".opencode/node_modules/@opencode-ai/sdk/dist/index.d.ts"
+          ],
+          "lspDiagnostics": {
+            "errors": [],
+            "warnings": []
+          },
+          "fileCount": 762
+        },
+        "conversationHistory": []
+      },
+      "actions": [
+        {
+          "step": 1,
+          "tool": "edit",
+          "callID": "toolu_01LBGW7qodTHs9FEckYTYSiY",
+          "args": {
+            "filePath": "/home/alan/opencode-dspy/test.txt",
+            "oldString": "This is a test.\n",
+            "newString": "This is a test.\nYet another test"
+          },
+          "timestamp": "2025-11-28T04:05:03.987Z",
+          "result": "",
+          "success": true
+        }
+      ],
+      "output": {
+        "response": "Done! I've added \"Yet another test\" to test.txt on line 2.",
+        "finalMessage": "msg_ac8a2ceab001EDaLZ3c3b0fJMI"
+      },
+      "outcome": {
+        "success": true,
+        "taskCompleted": true,
+        "metrics": {
+          "lspErrorsCleared": false,
+          "filesModified": 1,
+          "timeToCompletion": 8.591,
+          "toolCallCount": 1,
+          "tokenCost": {
+            "input": 10,
+            "output": 152,
+            "cache": {
+              "read": 22675,
+              "write": 547
+            }
+          },
+          "cacheHitRate": 0.9995591800749394
+        },
+        "evaluation": {
+          "correctness": 1,
+          "efficiency": 1,
+          "minimalEdits": 1
+        }
+      },
+      "agent": {
+        "name": "build",
+        "model": "opencode/claude-sonnet-4-5",
+        "temperature": 0,
+        "promptTokens": 7,
+        "completionTokens": 22
+      },
+      "metadata": {
+        "timestamp": "2025-11-28T04:05:04.300Z",
+        "sessionId": "ses_5375d4558ffeuDeN2btEBpT8OT",
+        "duration": 8.595,
+        "messageCount": 3
+      }
+    }
+  ]
+}

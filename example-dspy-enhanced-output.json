@@ -1,0 +1,261 @@
+{
+  "session": "ses_550e8400e29b41d4a716446655440000",
+  "generated": "2025-11-27T15:30:00.000Z",
+  "totalExamples": 2,
+  "outcome": {
+    "success": true,
+    "taskCompleted": true,
+    "metrics": {
+      "lspErrorsCleared": true,
+      "filesModified": 2,
+      "timeToCompletion": 67.3,
+      "toolCallCount": 5,
+      "tokenCost": {
+        "input": 2845,
+        "output": 892,
+        "cache": {
+          "read": 1200,
+          "write": 450
+        }
+      }
+    },
+    "evaluation": {
+      "correctness": 1.0,
+      "efficiency": 0.89,
+      "minimalEdits": 0.83
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "task": "Fix the TypeScript compilation error in the session logger plugin",
+        "context": {
+          "workingDirectory": "/home/alan/opencode-dspy",
+          "projectType": "typescript",
+          "relevantFiles": [
+            ".opencode/plugin/session-logger.ts",
+            ".opencode/package.json",
+            "tsconfig.json"
+          ],
+          "lspDiagnostics": {
+            "errors": [
+              {
+                "file": ".opencode/plugin/session-logger.ts",
+                "line": 42,
+                "message": "Property 'info' does not exist on type 'Message'",
+                "severity": "error"
+              }
+            ],
+            "warnings": []
+          },
+          "gitStatus": {
+            "branch": "main",
+            "uncommittedChanges": 3,
+            "status": "M .opencode/plugin/session-logger.ts\n?? example-dspy-format.json\n"
+          },
+          "fileCount": 15
+        },
+        "conversationHistory": []
+      },
+      "actions": [
+        {
+          "step": 1,
+          "tool": "read",
+          "args": {
+            "filePath": ".opencode/plugin/session-logger.ts"
+          },
+          "result": "// File contents with 257 lines...",
+          "success": true,
+          "timestamp": "2025-11-27T15:28:15.123Z"
+        },
+        {
+          "step": 2,
+          "tool": "read",
+          "args": {
+            "filePath": ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts",
+            "offset": 0,
+            "limit": 200
+          },
+          "result": "// Type definitions for SDK...",
+          "success": true,
+          "timestamp": "2025-11-27T15:28:16.456Z"
+        },
+        {
+          "step": 3,
+          "tool": "edit",
+          "args": {
+            "filePath": ".opencode/plugin/session-logger.ts",
+            "oldString": "const info = event.properties?.info;",
+            "newString": "const info = event.properties?.info as UserMessage | AssistantMessage;"
+          },
+          "result": "Edit successful",
+          "success": true,
+          "timestamp": "2025-11-27T15:28:20.789Z",
+          "lspDiagnosticsAfter": {
+            "errors": [],
+            "warnings": []
+          }
+        }
+      ],
+      "output": {
+        "response": "I've fixed the TypeScript compilation error by adding a type assertion. The issue was that the `info` property wasn't typed correctly. I've cast it to `UserMessage | AssistantMessage` which matches the actual type from the SDK.",
+        "finalMessage": "msg_ac85e20e1001gDfdQkcYMB9ITX"
+      },
+      "outcome": {
+        "success": true,
+        "taskCompleted": true,
+        "metrics": {
+          "lspErrorsCleared": true,
+          "filesModified": 1,
+          "timeToCompletion": 23.5,
+          "toolCallCount": 3,
+          "tokenCost": {
+            "input": 1842,
+            "output": 326,
+            "cache": {
+              "read": 800,
+              "write": 200
+            }
+          }
+        },
+        "evaluation": {
+          "correctness": 1.0,
+          "efficiency": 0.95,
+          "minimalEdits": 1.0
+        }
+      },
+      "agent": {
+        "name": "build",
+        "model": "anthropic/claude-sonnet-4-5",
+        "temperature": 0.0,
+        "promptTokens": 1842,
+        "completionTokens": 326
+      },
+      "metadata": {
+        "timestamp": "2025-11-27T15:28:25.335Z",
+        "sessionId": "ses_550e8400e29b41d4a716446655440000",
+        "duration": 23.5,
+        "messageCount": 2
+      }
+    },
+    {
+      "input": {
+        "task": "Now add comprehensive DSPy training data format with tool tracking",
+        "context": {
+          "workingDirectory": "/home/alan/opencode-dspy",
+          "projectType": "typescript",
+          "relevantFiles": [
+            ".opencode/plugin/session-logger.ts",
+            ".opencode/package.json",
+            "example-dspy-format.json"
+          ],
+          "lspDiagnostics": {
+            "errors": [],
+            "warnings": []
+          },
+          "gitStatus": {
+            "branch": "main",
+            "uncommittedChanges": 2,
+            "status": "M .opencode/plugin/session-logger.ts\n?? example-dspy-format.json\n"
+          },
+          "fileCount": 15
+        },
+        "conversationHistory": [
+          {
+            "role": "user",
+            "content": "Fix the TypeScript compilation error in the session logger plugin",
+            "timestamp": "2025-11-27T15:28:10.000Z"
+          },
+          {
+            "role": "assistant",
+            "content": "I've fixed the TypeScript compilation error by adding a type assertion...",
+            "timestamp": "2025-11-27T15:28:25.335Z"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "step": 1,
+          "tool": "read",
+          "args": {
+            "filePath": ".opencode/plugin/session-logger.ts"
+          },
+          "result": "// Current implementation with 257 lines",
+          "success": true,
+          "timestamp": "2025-11-27T15:29:01.234Z"
+        },
+        {
+          "step": 2,
+          "tool": "read",
+          "args": {
+            "filePath": "example-dspy-format.json"
+          },
+          "result": "{ \"session\": \"550e8400-e29b-41d4-a716-446655440000\"...",
+          "success": true,
+          "timestamp": "2025-11-27T15:29:02.567Z"
+        },
+        {
+          "step": 3,
+          "tool": "write",
+          "args": {
+            "filePath": ".opencode/plugin/session-logger.ts"
+          },
+          "result": "File written successfully",
+          "success": true,
+          "timestamp": "2025-11-27T15:29:45.890Z"
+        },
+        {
+          "step": 4,
+          "tool": "bash",
+          "args": {
+            "command": "cd /home/alan/opencode-dspy/.opencode && tsc --noEmit plugin/session-logger.ts",
+            "description": "Check TypeScript compilation"
+          },
+          "result": "No errors found",
+          "success": true,
+          "timestamp": "2025-11-27T15:29:50.123Z"
+        }
+      ],
+      "output": {
+        "response": "I've completely rebuilt the session logger plugin with comprehensive DSPy training data format. The new version includes:\n\n1. **Tool call tracking** - Captures all tool executions with args and results via `tool.execute.before/after` hooks\n2. **Project context** - Collects file listings, LSP diagnostics, and git status\n3. **Outcome evaluation** - Evaluates success, metrics, and quality scores\n4. **Training filtering** - Only saves successful sessions for training\n5. **Agent metadata** - Tracks model, tokens, and timing information\n\nThe plugin now generates DSPy-ready training examples in `.opencode-logs/dspy-{sessionId}.json` files.",
+        "finalMessage": "msg_bc95f30f2112hEgeRldZNC0JUY"
+      },
+      "outcome": {
+        "success": true,
+        "taskCompleted": true,
+        "metrics": {
+          "lspErrorsCleared": false,
+          "filesModified": 1,
+          "timeToCompletion": 43.8,
+          "toolCallCount": 4,
+          "tokenCost": {
+            "input": 3567,
+            "output": 1245,
+            "cache": {
+              "read": 1800,
+              "write": 600
+            }
+          }
+        },
+        "evaluation": {
+          "correctness": 1.0,
+          "efficiency": 0.82,
+          "minimalEdits": 1.0
+        }
+      },
+      "agent": {
+        "name": "build",
+        "model": "anthropic/claude-sonnet-4-5",
+        "temperature": 0.0,
+        "promptTokens": 3567,
+        "completionTokens": 1245
+      },
+      "metadata": {
+        "timestamp": "2025-11-27T15:30:00.000Z",
+        "sessionId": "ses_550e8400e29b41d4a716446655440000",
+        "duration": 43.8,
+        "messageCount": 4
+      }
+    }
+  ]
+}

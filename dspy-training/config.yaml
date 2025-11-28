@@ -1,0 +1,49 @@
+# DSPy Training Configuration
+
+data:
+  raw_dir: "./data/raw"
+  processed_dir: "./data/processed"
+  splits_dir: "./data/splits"
+  
+  # DSPy recommends 20% train, 80% validation for prompt optimization
+  # Data is split into train and validation sets using train_split ratio
+  # The validation set receives the remaining (1 - train_split) portion
+  train_split: 0.2  # 20% for training, remaining 80% goes to validation
+  
+  # Minimum requirements for training data
+  min_examples: 10
+  require_success: true  # Only use successful examples
+  
+  # Random seed for reproducibility
+  random_seed: 42
+
+models:
+  # Target model (the one we're optimizing prompts for)
+  target:
+    provider: "ollama"
+    model: "qwen2.5-coder:7b"
+    temperature: 0.0
+    
+  # Teacher model (used by DSPy to generate optimized prompts)
+  teacher:
+    provider: "anthropic"
+    model: "claude-sonnet-4-5"
+    api_key_env: "ANTHROPIC_API_KEY"
+
+optimization:
+  optimizer: "MIPROv2"  # Can be: MIPROv2, COPRO, BootstrapFewShot
+  auto_mode: "light"    # light/medium/heavy (affects cost/time)
+  num_trials: 20        # Number of optimization iterations
+  max_bootstrapped_demos: 3  # Few-shot examples to include
+  max_labeled_demos: 2
+  
+  # Metric weights
+  metric_weights:
+    success: 0.5
+    efficiency: 0.3
+    correctness: 0.2
+
+outputs:
+  prompts_dir: "./outputs/prompts"
+  logs_dir: "./outputs/logs"
+  save_intermediate: true

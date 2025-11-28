@@ -1,0 +1,214 @@
+{
+  "sessionId": "ses_53571d288ffecOJu7PgIgUTJqU",
+  "messages": [
+    {
+      "messageId": "msg_aca987092001IcomTTNF85g8x4",
+      "role": "user",
+      "timestamp": "2025-11-28T13:12:59.293Z",
+      "content": "/new ",
+      "info": {
+        "id": "msg_aca987092001IcomTTNF85g8x4",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "user",
+        "time": {
+          "created": 1764335579287
+        },
+        "summary": {
+          "title": "Analyzing /new endpoint usage",
+          "body": "Hello! I'm ready to help you with your new task. Could you please provide more details about what you'd like me to do?",
+          "diffs": []
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "ollama",
+          "modelID": "qwen3-coder:30b"
+        }
+      }
+    },
+    {
+      "messageId": "msg_aca9870a0001yDBI5lzlsQrogV",
+      "role": "assistant",
+      "timestamp": "2025-11-28T13:12:59.297Z",
+      "content": "Hello! I'm ready to help you with your new task. Could you please provide more details about what you'd like me to do?",
+      "info": {
+        "id": "msg_aca9870a0001yDBI5lzlsQrogV",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "assistant",
+        "time": {
+          "created": 1764335579296,
+          "completed": 1764335583863
+        },
+        "parentID": "msg_aca987092001IcomTTNF85g8x4",
+        "modelID": "qwen3-coder:30b",
+        "providerID": "ollama",
+        "mode": "build",
+        "path": {
+          "cwd": "/home/alan/opencode-dspy",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "input": 4096,
+          "output": 29,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "messageId": "msg_aca9d36f50014xmxQ1u14wgA9g",
+      "role": "user",
+      "timestamp": "2025-11-28T13:18:12.217Z",
+      "content": "/new",
+      "info": {
+        "id": "msg_aca9d36f50014xmxQ1u14wgA9g",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "user",
+        "time": {
+          "created": 1764335892216
+        },
+        "summary": {
+          "title": "Analyzing /new endpoint",
+          "body": "Hello! I'm OpenCode, ready to help you with your coding tasks. What would you like to work on?",
+          "diffs": []
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "opencode",
+          "modelID": "claude-sonnet-4-5"
+        }
+      }
+    },
+    {
+      "messageId": "msg_aca9d36fb001x4tcF0ZqA5A9wH",
+      "role": "assistant",
+      "timestamp": "2025-11-28T13:18:12.220Z",
+      "content": "Hello! I'm OpenCode, ready to help you with your coding tasks. What would you like to work on?",
+      "info": {
+        "id": "msg_aca9d36fb001x4tcF0ZqA5A9wH",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "assistant",
+        "time": {
+          "created": 1764335892219,
+          "completed": 1764335896559
+        },
+        "parentID": "msg_aca9d36f50014xmxQ1u14wgA9g",
+        "modelID": "claude-sonnet-4-5",
+        "providerID": "opencode",
+        "mode": "build",
+        "path": {
+          "cwd": "/home/alan/opencode-dspy",
+          "root": "/"
+        },
+        "cost": 0.0520533,
+        "tokens": {
+          "input": 2,
+          "output": 27,
+          "reasoning": 0,
+          "cache": {
+            "read": 11141,
+            "write": 12880
+          }
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "messageId": "msg_acaa3d86d001Do0BviJjpamXWl",
+      "role": "user",
+      "timestamp": "2025-11-28T13:25:26.770Z",
+      "content": "/new",
+      "info": {
+        "id": "msg_acaa3d86d001Do0BviJjpamXWl",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "user",
+        "time": {
+          "created": 1764336326768
+        },
+        "summary": {
+          "title": "Analyzing /new endpoint text",
+          "diffs": []
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "opencode",
+          "modelID": "claude-sonnet-4-5"
+        }
+      }
+    },
+    {
+      "messageId": "msg_acaa3d874001mgC4bJGfciQDUc",
+      "role": "assistant",
+      "timestamp": "2025-11-28T13:25:26.772Z",
+      "content": "",
+      "info": {
+        "id": "msg_acaa3d874001mgC4bJGfciQDUc",
+        "sessionID": "ses_53571d288ffecOJu7PgIgUTJqU",
+        "role": "assistant",
+        "time": {
+          "created": 1764336326772
+        },
+        "parentID": "msg_acaa3d86d001Do0BviJjpamXWl",
+        "modelID": "claude-sonnet-4-5",
+        "providerID": "opencode",
+        "mode": "build",
+        "path": {
+          "cwd": "/home/alan/opencode-dspy",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      }
+    }
+  ],
+  "toolCalls": [],
+  "context": {
+    "workingDirectory": "/home/alan/opencode-dspy",
+    "relevantFiles": [
+      "session-logger.ts",
+      "session-logger-v1.ts",
+      ".opencode/plugin/session-logger.ts",
+      ".opencode/node_modules/zod/index.js",
+      ".opencode/node_modules/zod/index.d.ts",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/example.d.ts",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/index.js",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/tool.js",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/shell.js",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/example.js",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/shell.d.ts",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/tool.d.ts",
+      ".opencode/node_modules/zod/locales/index.js",
+      ".opencode/node_modules/zod/locales/index.d.ts",
+      ".opencode/node_modules/zod/mini/index.js",
+      ".opencode/node_modules/zod/mini/index.d.ts",
+      ".opencode/node_modules/zod/src/index.ts",
+      ".opencode/node_modules/zod/v4/index.js",
+      ".opencode/node_modules/zod/v4/index.d.ts"
+    ],
+    "lspDiagnostics": {
+      "errors": [],
+      "warnings": []
+    },
+    "fileCount": 803
+  },
+  "initialLspDiagnostics": {
+    "errors": [],
+    "warnings": []
+  },
+  "startTime": 1764335579292,
+  "lastUpdateTime": 1764336328357,
+  "updateCount": 20
+}
