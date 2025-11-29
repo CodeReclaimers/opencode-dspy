@@ -1,0 +1,172 @@
+# DSPy OpenCode Optimizer Configuration
+
+# Data pipeline settings
+data:
+  # Directory containing session log JSON files
+  session_logs_dir: "./data"
+
+  # Quality thresholds for filtering training examples
+  min_correctness: 0.8
+  min_efficiency: 0.3
+
+  # Filter to specific agent type (null for all agents)
+  # Options: "build", "plan", null
+  agent_filter: null
+
+  # Only use successful sessions
+  require_success: true
+
+  # Train/val/test split ratios
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+  # Random seed for reproducibility
+  random_seed: 42
+
+  # Minimum examples required to proceed
+  min_examples: 10
+
+# Model configuration
+models:
+  # Teacher model (strong model for generating optimization candidates)
+  # Common options:
+  #   - OpenAI: "gpt-4o", "gpt-4-turbo"
+  #   - Anthropic: "claude-sonnet-4-5", "claude-opus-4"
+  #   - OpenAI-compatible: Any model via api_base
+  teacher:
+    provider: "openai"  # openai, anthropic, openai-compatible, or custom
+    model: "claude-sonnet-4-5"  # or "gpt-4-turbo", "claude-sonnet-4-5", etc.
+    api_base: "https://opencode.ai/zen/v1"  # null uses provider default, or specify custom endpoint
+    api_key_env: "OPENAI_API_KEY"  # Environment variable name
+    temperature: 0.0
+
+  # Student model (target model to optimize for)
+  student:
+    provider: "ollama"
+    model: "qwen2.5-coder:1.5b"
+    api_base: "http://localhost:11434/v1"  # /v1 = OpenAI-compatible endpoint
+    # For native Ollama API, use: "http://localhost:11434" (no /v1)
+    api_key_env: null  # Ollama typically doesn't need API key
+    temperature: 0.0
+
+  # Alternative student models to try
+  student_candidates:
+    - provider: "ollama"
+      model: "qwen2.5-coder:32b"
+      api_base: "http://localhost:11434/v1"
+
+    - provider: "ollama"
+      model: "deepseek-coder-v2:16b"
+      api_base: "http://localhost:11434/v1"
+
+    - provider: "ollama"
+      model: "codellama:34b"
+      api_base: "http://localhost:11434/v1"
+
+  # Example configurations for different providers:
+  #
+  # OpenAI:
+  #   provider: "openai"
+  #   model: "gpt-4o"
+  #   api_base: null  # Uses OpenAI default
+  #   api_key_env: "OPENAI_API_KEY"
+  #
+  # Anthropic:
+  #   provider: "anthropic"
+  #   model: "claude-sonnet-4-5"
+  #   api_base: null  # Uses Anthropic default
+  #   api_key_env: "ANTHROPIC_API_KEY"
+  #
+  # OpenAI-compatible (e.g., vLLM, OpenRouter, Together AI):
+  #   provider: "openai-compatible"
+  #   model: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+  #   api_base: "https://api.together.xyz/v1"
+  #   api_key_env: "TOGETHER_API_KEY"
+  #
+  # Local Ollama:
+  #   provider: "ollama"
+  #   model: "qwen2.5-coder:32b"
+  #   api_base: "http://localhost:11434/v1"
+  #   api_key_env: null
+
+# Optimization settings
+optimization:
+  # Default optimizer to use
+  # Options: "bootstrap", "mipro", "copro"
+  default_optimizer: "bootstrap"
+
+  # Optimizer-specific configurations
+  bootstrap:
+    enabled: true
+    max_bootstrapped_demos: 4
+    max_labeled_demos: 4
+    max_rounds: 1
+
+  mipro:
+    enabled: true
+    # MIPROv2 has two modes:
+    # 1. Manual mode (current): Set specific num_candidates and num_trials
+    # 2. Auto mode: Set auto='light'|'medium'|'heavy' (comment out num_candidates)
+    num_candidates: 10
+    init_temperature: 1.0
+    # minibatch_size: null  # Auto-adjusts to min(25, len(valset))
+    # auto: 'light'  # Uncomment to use auto mode instead of manual
+
+  copro:
+    enabled: true
+    depth: 3
+    breadth: 10
+
+  # Metric weights for composite metric
+  metric_weights:
+    tool_validity: 3.0
+    reasoning_quality: 1.0
+    plan_coherence: 2.0
+    first_action_match: 2.0
+    efficiency: 1.0
+
+# Evaluation settings
+evaluation:
+  # Number of parallel threads for evaluation
+  num_threads: 1
+
+  # Display progress during evaluation
+  display_progress: true
+
+  # Primary metric to use
+  # Options: "composite", "correctness", "simple"
+  primary_metric: "composite"
+
+# Output settings
+output:
+  # Base directory for all outputs
+  base_dir: "./outputs"
+
+  # Subdirectories
+  prompts_dir: "./outputs/prompts"
+  logs_dir: "./outputs/logs"
+  experiments_dir: "./outputs/experiments"
+
+  # Export formats to generate
+  export_formats:
+    - "agent_config"         # opencode.jsonc snippet
+    - "custom_instructions"  # AGENTS.md format
+    - "prompt_template"      # Full .txt template
+
+  # Generate usage guide
+  create_usage_guide: true
+
+# OpenCode integration
+opencode:
+  # Path to OpenCode source repository (for template extraction)
+  source_path: "/home/alan/opencode"
+
+  # Whether to use OpenCode templates as base
+  use_templates: true
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./outputs/logs/training.log"

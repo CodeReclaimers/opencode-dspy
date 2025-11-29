@@ -1,0 +1,68 @@
+# Example configuration using OpenAI for both teacher and student
+# Copy this to config/default.yaml or use with --config flag
+
+data:
+  session_logs_dir: "./data"
+  min_correctness: 0.8
+  min_efficiency: 0.3
+  agent_filter: null
+  require_success: true
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+  min_examples: 10
+
+models:
+  # Teacher: GPT-4 for optimization
+  teacher:
+    provider: "openai"
+    model: "gpt-4o"  # or gpt-4-turbo, gpt-4o-mini
+    api_base: null  # Uses OpenAI default
+    api_key_env: "OPENAI_API_KEY"
+    temperature: 0.0
+
+  # Student: Smaller OpenAI model (or local via Ollama)
+  student:
+    provider: "openai"
+    model: "gpt-4o-mini"  # Smaller/cheaper for student
+    api_base: null
+    api_key_env: "OPENAI_API_KEY"
+    temperature: 0.0
+
+optimization:
+  default_optimizer: "bootstrap"
+  bootstrap:
+    enabled: true
+    max_bootstrapped_demos: 4
+    max_labeled_demos: 4
+    max_rounds: 1
+  copro:
+    enabled: true
+    depth: 3
+    breadth: 10
+
+evaluation:
+  num_threads: 1
+  display_progress: true
+  primary_metric: "composite"
+
+output:
+  base_dir: "./outputs"
+  prompts_dir: "./outputs/prompts"
+  logs_dir: "./outputs/logs"
+  experiments_dir: "./outputs/experiments"
+  export_formats:
+    - "agent_config"
+    - "custom_instructions"
+    - "prompt_template"
+  create_usage_guide: true
+
+opencode:
+  source_path: "/home/alan/opencode"
+  use_templates: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./outputs/logs/training.log"

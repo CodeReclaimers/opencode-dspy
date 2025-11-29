@@ -1,0 +1,79 @@
+# Example configuration for OpenAI-compatible providers
+# Examples: Together AI, vLLM, OpenRouter, LM Studio, etc.
+
+data:
+  session_logs_dir: "./data"
+  min_correctness: 0.8
+  min_efficiency: 0.3
+  agent_filter: null
+  require_success: true
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+  min_examples: 10
+
+models:
+  # Teacher: Large model via OpenAI-compatible API
+  teacher:
+    provider: "openai-compatible"
+    # Together AI example:
+    model: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    api_base: "https://api.together.xyz/v1"
+    api_key_env: "TOGETHER_API_KEY"
+    temperature: 0.0
+
+    # OpenRouter example:
+    # model: "anthropic/claude-3.5-sonnet"
+    # api_base: "https://openrouter.ai/api/v1"
+    # api_key_env: "OPENROUTER_API_KEY"
+
+    # vLLM local example:
+    # model: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    # api_base: "http://localhost:8000/v1"
+    # api_key_env: null
+
+  # Student: Smaller model (local Ollama recommended)
+  student:
+    provider: "ollama"
+    model: "qwen2.5-coder:32b"
+    api_base: "http://localhost:11434/v1"
+    api_key_env: null
+    temperature: 0.0
+
+optimization:
+  default_optimizer: "bootstrap"
+  bootstrap:
+    enabled: true
+    max_bootstrapped_demos: 4
+    max_labeled_demos: 4
+    max_rounds: 1
+  copro:
+    enabled: true
+    depth: 3
+    breadth: 10
+
+evaluation:
+  num_threads: 1
+  display_progress: true
+  primary_metric: "composite"
+
+output:
+  base_dir: "./outputs"
+  prompts_dir: "./outputs/prompts"
+  logs_dir: "./outputs/logs"
+  experiments_dir: "./outputs/experiments"
+  export_formats:
+    - "agent_config"
+    - "custom_instructions"
+    - "prompt_template"
+  create_usage_guide: true
+
+opencode:
+  source_path: "/home/alan/opencode"
+  use_templates: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./outputs/logs/training.log"
